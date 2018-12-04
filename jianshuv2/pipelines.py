@@ -11,7 +11,7 @@ class JanShuPipeline2:
 			UPDATE jst_pg set special=%(special)s WHERE special_id=%(special_id)s
 		"""
 
-		self.con = pymysql.connect(host='localhost',user="root",password="root",database='jianshu',port=3306)
+		self.con = pymysql.connect(host='192.168.0.51',user="root",password="root",database='jianshu',port=3306)
 	def open_spider(self,spider):	
 		self.cursor = self.con.cursor()
 
