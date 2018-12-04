@@ -93,6 +93,7 @@ class JsSpider2(RedisCrawlSpider):
         req = scrapy.Request(special_url, 
                             callback=self.parse_special, 
                             priority=1,
+                            dont_filter=True
                             )
         req.meta['data'] = data
         yield item
@@ -110,6 +111,7 @@ class JsSpider2(RedisCrawlSpider):
             req = scrapy.Request(special_url, 
                                 callback=self.parse_special, 
                                 priority=response.request.priority+1,
+                                dont_filter=True
                                 )
             req.meta['data'] = data
             yield req
