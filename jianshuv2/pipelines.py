@@ -32,8 +32,7 @@ class JanShuPipeline2:
 					self.con.commit()
 					if affect==0:
 						print('='*30,'0行受到影响')
-				else:
-					raise DropItem()
+						print('='*30,item['special_id'])
 			except Exception as e:
 				print('='*30,'修改出错了')
 				print(item['page_url'])
