@@ -27,3 +27,7 @@ class Jianshuv2Item(scrapy.Item):
     views_count = scrapy.Field()
     special_id = scrapy.Field()
     special = scrapy.Field()
+
+item = SpecialItem(special_id=12312,special='')
+if not item['special']:
+    print('123123')
