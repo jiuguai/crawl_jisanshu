@@ -21,7 +21,7 @@ class JanShuPipeline2:
 				self.cursor.execute(self.sql,dict(item))
 				self.con.commit()
 			except Exception as e:
-				print('='*30,'出错了')
+				print('='*30,'插入出错了')
 				print(item['page_url'])
 				print(e)
 				raise DropItem(item['page_url'])
@@ -30,7 +30,7 @@ class JanShuPipeline2:
 				self.cursor.execute(self.update_sql,dict(item))
 				self.con.commit()
 			except Exception as e:
-				print('='*30,'出错了')
+				print('='*30,'修改出错了')
 				print(item['page_url'])
 				print(e)
 				raise DropItem(item['page_url'])

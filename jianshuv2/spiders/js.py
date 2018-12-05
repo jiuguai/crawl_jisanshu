@@ -38,8 +38,7 @@ class JsSpider2(RedisCrawlSpider):
         content = response.xpath('//div[@class="show-content-free"]').getall()
 
         # 字数
-        words_count = response.xpath('//span[@class="wordage"]/text()').re('\d+')
-        words_count = words_count[0] if words_count else 0
+        words_count = response.xpath('//span[@class="wordage"]/text()').re_first('\d+')
 
         # url
         page_url = response.url
@@ -48,20 +47,16 @@ class JsSpider2(RedisCrawlSpider):
         page_data = response.xpath('//script[@data-name="page-data"]')
 
         # 评论数
-        comments_count = page_data.re('"comments_count":(\d+)')
-        comments_count = comments_count[0] if comments_count else 0
+        comments_count = page_data.re_first('"comments_count":(\d+)')
 
         # 喜欢人数
-        likes_count = page_data.re('"likes_count":(\d+)')
-        likes_count = likes_count[0] if likes_count else 0
+        likes_count = page_data.re_first('"likes_count":(\d+)')
 
         # 阅读数
-        views_count = page_data.re('views_count":(\d+)')
-        views_count = views_count[0] if views_count else 0
+        views_count = page_data.re_first('views_count":(\d+)')
 
         # 专题ID
-        special_id = page_data.re('"id":(\d+)')
-        special_id = special_id[0] if special_id else 0
+        special_id = page_data.re_first('"id":(\d+)')
 
         # 专题内容
         special = ''
@@ -119,6 +114,7 @@ class JsSpider2(RedisCrawlSpider):
             yield data['item']
 
 
+# 講數據合併到請求中 統一發送請求
 class JsSpider(RedisCrawlSpider):
     name = 'js'
     allowed_domains = ['jianshu.com']
@@ -149,8 +145,7 @@ class JsSpider(RedisCrawlSpider):
         content = response.xpath('//div[@class="show-content-free"]').getall()
 
         # 字数
-        words_count = response.xpath('//span[@class="wordage"]/text()').re('\d+')
-        words_count = words_count[0] if words_count else 0
+        words_count = response.xpath('//span[@class="wordage"]/text()').re_first('\d+')
 
         # url
         page_url = response.url
@@ -159,20 +154,16 @@ class JsSpider(RedisCrawlSpider):
         page_data = response.xpath('//script[@data-name="page-data"]')
 
         # 评论数
-        comments_count = page_data.re('"comments_count":(\d+)')
-        comments_count = comments_count[0] if comments_count else 0
+        comments_count = page_data.re_first('"comments_count":(\d+)')
 
         # 喜欢人数
-        likes_count = page_data.re('"likes_count":(\d+)')
-        likes_count = likes_count[0] if likes_count else 0
+        likes_count = page_data.re_first('"likes_count":(\d+)')
 
         # 阅读数
-        views_count = page_data.re('views_count":(\d+)')
-        views_count = views_count[0] if views_count else 0
+        views_count = page_data.re_first('views_count":(\d+)')
 
         # 专题ID
-        special_id = page_data.re('"id":(\d+)')
-        special_id = special_id[0] if special_id else 0
+        special_id = page_data.re_first('"id":(\d+)')
 
         # 专题内容
         special = ''
