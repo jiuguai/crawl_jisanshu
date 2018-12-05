@@ -27,7 +27,7 @@ class JanShuPipeline2:
 				raise DropItem(item['page_url'])
 		else:
 			try:
-				if item['item']:
+				if item['special']:
 					affect = self.cursor.execute(self.update_sql,dict(item))
 					self.con.commit()
 					if affect==0:
