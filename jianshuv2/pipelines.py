@@ -27,8 +27,13 @@ class JanShuPipeline2:
 				raise DropItem(item['page_url'])
 		else:
 			try:
-				self.cursor.execute(self.update_sql,dict(item))
-				self.con.commit()
+				if item['item']:
+					affect = self.cursor.execute(self.update_sql,dict(item))
+					self.con.commit()
+					if affect==0:
+						print('='*30,'0行受到影响')
+				else:
+					raise DropItem()
 			except Exception as e:
 				print('='*30,'修改出错了')
 				print(item['page_url'])
